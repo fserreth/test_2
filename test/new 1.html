@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+
+<!-- Código descargado gratuitamente de HTMLpoint, el sitio italiano del web publishing
+                                   http://www.htmlpoint.com -->
+
+<TITLE>Ejemplos Javascript: ejemplo práctico </TITLE>
+
+<STYLE>
+.pictstyle {
+position: absolute;
+visibility: true;
+z-index: 2;
+}
+</STYLE>
+</HEAD>
+
+<BODY bgcolor="white">
+
+<DIV ID="pictobj" CLASS="pictstyle">
+<A HREF="http://www.clarence.com/home/htmlpoint"><IMG SRC="html_point_3kb.gif" BORDER=0></A>
+</DIV>
+
+
+<SCRIPT LANGUAGE = "JavaScript">
+
+	onerror=null;
+	var browver=false;
+	if(parseInt(navigator.appVersion)>=4) browver=true;
+	if(browver){
+	var i, x, y, k=2;
+	var browser=(navigator.appName=="Netscape");
+	var animobj=(browser) ? document.pictobj : document.all.pictobj.style;
+
+	var coordinates="0,0,64,64,0,128,128,0";
+
+	var xy=coordinates.split(",");
+	animobj.left=xy[0];
+	animobj.top=xy[1]; }
+
+	function getpath()
+	{if(browver)
+	{k+=2;
+	if(k==xy.length) k=0;
+	x=xy[k]; y=xy[k+1];
+	animate(x,y);}}
+
+	function animate( endx, endy )
+	{if(browver)
+	{i=1; reposition( ((endx - animobj.left)/32),((endy - animobj.top)/32)
+	); }}
+
+	function reposition(xst,yst)
+	{if(browver)
+	{if ( i<33) {
+	animobj.left+=xst;
+	animobj.top+=yst;
+	i+=1;
+	setTimeout("reposition("+xst+","+yst+")",1);} else getpath()}}
+
+	if(browver) {animate(xy[2],xy[3]);}
+
+
+
+</SCRIPT>
+
+</body>
+</html>
